@@ -13,6 +13,7 @@ import Feature from "src/parts/Details/Feature";
 import Header from "src/parts/Header";
 import Footer from "src/parts/Footer";
 import CoursePhoto from "src/parts/Details/CoursePhoto";
+import RenderPreviews from "src/parts/Details/RenderPreviews";
 
 export default function DetailCourse({ data }) {
     const footer = useRef(null);
@@ -41,6 +42,7 @@ export default function DetailCourse({ data }) {
             <Head>
                 <title>MICRO</title>
             </Head>
+            {/* Render Hero */}
             <section
                 className="pt-10 relative overflow-hidden"
                 style={{ height: 660 }}
@@ -79,7 +81,10 @@ export default function DetailCourse({ data }) {
                     <Header></Header>
                 </div>
             </section>
+
+            {/* Render body */}
             <section className="container mx-auto pt-24 relative">
+                {/* Render 3 Icon  */}
                 <div className="absolute top-0 w-full transform -translate-y-1/2">
                     <div className="w-3/4 mx-auto">
                         <div className="flex justify-between">
@@ -114,6 +119,8 @@ export default function DetailCourse({ data }) {
                         </div>
                     </div>
                 </div>
+
+                {/* Render Sticky Price  */}
                 <div>
                     <CSSTransition
                         in={isSticky}
@@ -159,8 +166,11 @@ export default function DetailCourse({ data }) {
                         </div>
                     </CSSTransition>
                 </div>
+
+                {/* Render body  */}
                 <div className="w-3/4 mx-auto mt-8">
                     <div className="w-3/4">
+                        {/* Render About */}
                         <section>
                             <h6 className="font-medium text-gray-900 text-2xl mb-4">
                                 About{" "}
@@ -170,6 +180,7 @@ export default function DetailCourse({ data }) {
                                 {data?.description ?? "No Description Found"}
                             </p>
                         </section>
+                        {/* Render Course Photos */}
                         <section className="mt-10">
                             <h6 className="font-medium text-gray-900 text-2xl mb-4">
                                 Course{" "}
@@ -190,6 +201,22 @@ export default function DetailCourse({ data }) {
                                 )}
                             </div>
                         </section>
+                        {/* Render Accordion */}
+                        <section className="mt-10">
+                            <h6 className="font-medium text-gray-900 text-2xl mb-4">
+                                You Will{" "}
+                                <span className="text-teal-500">Learn</span>
+                            </h6>
+                            {data?.chapters?.length > 0 ? (
+                                <RenderPreviews
+                                    previews={data.chapters}
+                                ></RenderPreviews>
+                            ) : (
+                                <div className="w-full text-center py-12">
+                                    No Chapter Found
+                                </div>
+                            )}
+                        </section>
                     </div>
                 </div>
             </section>
@@ -205,7 +232,7 @@ DetailCourse.getInitialProps = async (props) => {
     const { id } = props.query;
     try {
         const data = await courses.detail(id);
-        console.log(data);
+
         return { data };
     } catch (error) {}
 };

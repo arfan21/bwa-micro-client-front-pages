@@ -3,7 +3,6 @@ import Preview from "public/images/icon-preview.svg";
 import Modal from "src/components/Modal";
 
 export default function CoursePhoto({ data }) {
-    console.log(data);
     return (
         <div className="w-1/3 px-4">
             <div className="item relative">
