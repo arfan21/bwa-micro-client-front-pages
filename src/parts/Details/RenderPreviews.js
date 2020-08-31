@@ -19,13 +19,13 @@ export default function RenderPreviews({ previews }) {
                                 key={`${index}-${item.id}`}
                             >
                                 {item?.lessons?.length > 0 &&
-                                    item.lessons.map((child, index2) => {
+                                    item.lessons.map((child, index2) => (
                                         <div
                                             key={`${index2}-${child.id}`}
-                                            className="relative  hover:bg-gray-200 flex justify-between items-center pl-8 pr-4 py-2"
+                                            className="relative hover:bg-gray-200 flex justify-between items-center pl-8 pr-4 py-2"
                                         >
                                             <span className="text-gray-600">
-                                                {child?.name ?? "Course Name"}
+                                                {child?.name ?? "Course name"}
                                             </span>
                                             {index2 === 0 && (
                                                 <Modal
@@ -66,8 +66,8 @@ export default function RenderPreviews({ previews }) {
                                             {index2 !== 0 && (
                                                 <IconLock></IconLock>
                                             )}
-                                        </div>;
-                                    })}
+                                        </div>
+                                    ))}
                             </Item>
                         );
                     });
