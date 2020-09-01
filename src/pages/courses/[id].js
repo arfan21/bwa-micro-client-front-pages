@@ -14,6 +14,7 @@ import Header from "src/parts/Header";
 import Footer from "src/parts/Footer";
 import CoursePhoto from "src/parts/Details/CoursePhoto";
 import RenderPreviews from "src/parts/Details/RenderPreviews";
+import HappyStudent from "src/parts/Details/HappyStudent";
 
 export default function DetailCourse({ data }) {
     const footer = useRef(null);
@@ -30,13 +31,11 @@ export default function DetailCourse({ data }) {
         };
 
         window.addEventListener("scroll", stickyMetaToggler);
-
         return () => {
             window.removeEventListener("scroll", stickyMetaToggler);
         };
     }, []);
 
-    console.log(data);
     return (
         <>
             <Head>
@@ -217,10 +216,49 @@ export default function DetailCourse({ data }) {
                                 </div>
                             )}
                         </section>
+                        {/* Render instructor */}
+                        <section className="mt-10 w-2/3">
+                            <h6 className="font-medium text-gray-900 text-2xl mb-4">
+                                Our{" "}
+                                <span className="text-teal-500">
+                                    Instructor
+                                </span>
+                            </h6>
+                            <div className="flex items-center">
+                                <img
+                                    src={data?.mentor?.profile ?? ""}
+                                    alt={data?.mentor?.name ?? ""}
+                                    className="w-20 h-20 rounded-full overflow-hidden object-cover"
+                                />
+                                <div className="ml-4">
+                                    <h2 className="text-lg text-gray-900">
+                                        {data?.mentor?.name ?? "Mentor Name"}
+                                    </h2>
+                                    <h3 className="text-sm text-gray-60">
+                                        {data?.mentor?.profession ??
+                                            "Mentor Profession"}
+                                    </h3>
+                                </div>
+                            </div>
+                        </section>
+                        {/* Render happy students */}
+                        <section className="mt-10 w-6/12">
+                            <h6 className="font-medium text-gray-900 text-2xl mb-4">
+                                Happy{" "}
+                                <span className="text-teal-500">Students</span>
+                            </h6>
+                            {data?.reviews?.map?.((testi, index) => (
+                                <HappyStudent
+                                    data={testi}
+                                    key={index}
+                                ></HappyStudent>
+                            ))}
+                        </section>
                     </div>
                 </div>
             </section>
-            <div style={{ height: 2000 }}></div>
+
+            {/* Render Footer */}
             <section className="mt-24 bg-indigo-1000 py-12" ref={footer}>
                 <Footer></Footer>
             </section>

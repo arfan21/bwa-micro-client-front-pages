@@ -25,6 +25,7 @@
 .modal-close::before {
     transform: rotate(45deg);
 }
+
 .modal-close::after {
     transform: rotate(-45deg);
 }
@@ -36,15 +37,19 @@
 .overlay-enter {
     opacity: 0;
 }
+
 .overlay-enter-active {
     opacity: 1;
 }
+
 .overlay-enter-done {
     opacity: 1;
 }
+
 .overlay-exit {
     opacity: 1;
 }
+
 .overlay-exit-active {
     opacity: 0;
 }
@@ -112,8 +117,7 @@
     height: 90%;
     opacity: 0.8;
     clip-path: polygon(46% 0%, 82% 0%, 67% 100%, 0% 100%);
-    background: transparent
-        linear-gradient(130.09deg, #3d47bd 0%, #2e37a4 50.8%);
+    background: transparent linear-gradient(130.09deg, #3d47bd 0%, #2e37a4 50.8%);
 }
 
 .header-clipping:before {
@@ -200,12 +204,44 @@
 .accordion-item-enter {
     opacity: 0;
 }
+
 .accordion-item-enter-active {
     opacity: 1;
 }
+
 .accordion-item-exit {
     opacity: 1;
 }
+
 .accordion-item-exit-active {
     opacity: 0;
+}
+
+svg#svg-star {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -9999px;
+    top: -9999px;
+}
+
+.stars {
+    @apply .relative .inline-flex;
+    min-width: 200px;
+}
+
+.stars .star {
+    @apply .absolute;
+    clip-path: url(#star);
+    /* mask: url(../public/images/icon-star.svg) no-repeat center left; */
+}
+
+.stars .star:not(.placeholder) {
+    z-index: 2;
+    @apply .bg-yellow-400;
+}
+
+.stars .star.placeholder {
+    z-index: 1;
+    @apply .bg-gray-200;
 }
