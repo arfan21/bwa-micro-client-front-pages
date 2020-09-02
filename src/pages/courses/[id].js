@@ -22,6 +22,10 @@ export default function DetailCourse({ data }) {
     const [isSticky, setIsSticky] = useState(() => true);
 
     useEffect(() => {
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+
         const stickyOffsetTop = footer.current.getBoundingClientRect().top;
 
         const stickyMetaToggler = () => {
@@ -247,12 +251,18 @@ export default function DetailCourse({ data }) {
                                 Happy{" "}
                                 <span className="text-teal-500">Students</span>
                             </h6>
-                            {data?.reviews?.map?.((testi, index) => (
-                                <HappyStudent
-                                    data={testi}
-                                    key={index}
-                                ></HappyStudent>
-                            ))}
+                            {data?.reviews?.length > 0 ? (
+                                data?.reviews?.map?.((testi, index) => (
+                                    <HappyStudent
+                                        data={testi}
+                                        key={index}
+                                    ></HappyStudent>
+                                ))
+                            ) : (
+                                <div className="w-full text-center py-12">
+                                    No Reviews Found
+                                </div>
+                            )}
                         </section>
                     </div>
                 </div>
