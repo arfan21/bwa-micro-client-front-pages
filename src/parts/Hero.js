@@ -30,6 +30,7 @@ export default function Hero() {
                         className="bg-white focus:outline-none border-0 px-6 py-3 w-1/2 "
                         placeholder="Your email address"
                     />
+
                     <button className="bg-orange-500 hover:bg-orange-400 transition-all duration-200 focus:outline-none shadow-inner text-white px-6 py-3  ">
                         Register Now
                     </button>

@@ -155,7 +155,7 @@
 }
 
 .item figure.item-image svg.icon circle {
-    @apply fill-orange-500;
+    @apply .fill-orange-500;
 }
 
 .item:hover figure.item-image svg.icon {

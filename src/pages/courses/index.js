@@ -174,5 +174,8 @@ Courses.getInitialProps = async () => {
         const data = await courses.all();
 
         return { data: data.data };
-    } catch (error) {}
+    } catch (error) {
+        console.log(error);
+        return { data: null };
+    }
 };
